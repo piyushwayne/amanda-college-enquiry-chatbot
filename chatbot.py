@@ -110,16 +110,13 @@ class PopupBox(ModalView):
 
     title = StringProperty('No title')
     '''String that represents the title of the popup.
-
     :attr:`title` is a :class:`~kivy.properties.StringProperty` and defaults to
     'No title'.
     '''
 
     title_size = NumericProperty('14sp')
     '''Represents the font size of the popup title.
-
     .. versionadded:: 1.6.0
-
     :attr:`title_size` is a :class:`~kivy.properties.NumericProperty` and
     defaults to '14sp'.
     '''
@@ -127,52 +124,41 @@ class PopupBox(ModalView):
     title_align = OptionProperty('left',
                                  options=['left', 'center', 'right', 'justify'])
     '''Horizontal alignment of the title.
-
     .. versionadded:: 1.9.0
-
     :attr:`title_align` is a :class:`~kivy.properties.OptionProperty` and
     defaults to 'left'. Available options are left, center, right and justify.
     '''
 
     title_font = StringProperty('Roboto')
     '''Font used to render the title text.
-
     .. versionadded:: 1.9.0
-
     :attr:`title_font` is a :class:`~kivy.properties.StringProperty` and
     defaults to 'Roboto'.
     '''
 
     content = ObjectProperty(None)
     '''Content of the popup that is displayed just under the title.
-
     :attr:`content` is an :class:`~kivy.properties.ObjectProperty` and defaults
     to None.
     '''
 
     title_color = ListProperty([1, 1, 1, 1])
     '''Color used by the Title.
-
     .. versionadded:: 1.8.0
-
     :attr:`title_color` is a :class:`~kivy.properties.ListProperty` and
     defaults to [1, 1, 1, 1].
     '''
 
     separator_color = ListProperty([47 / 255., 167 / 255., 212 / 255., 1.])
     '''Color used by the separator between title and content.
-
     .. versionadded:: 1.1.0
-
     :attr:`separator_color` is a :class:`~kivy.properties.ListProperty` and
     defaults to [47 / 255., 167 / 255., 212 / 255., 1.]
     '''
 
     separator_height = NumericProperty('2dp')
     '''Height of the separator.
-
     .. versionadded:: 1.1.0
-
     :attr:`separator_height` is a :class:`~kivy.properties.NumericProperty` and
     defaults to 2dp.
     '''
@@ -309,22 +295,10 @@ class MyApp(App):
             except:
                 print "No match found"
             print "Normal Response: ",response
+            f = open("text.txt","w+")
+            f.write(response)
+            f.close()
 
-	    from __future__ import print_function
-	    import json
-            from os.path import join, dirname
-            from watson_developer_cloud import TextToSpeechV1
-
-            text_to_speech = TextToSpeechV1(
-            username='91fdc33e-35f4-4b10-b05f-53af120c1aba',
-            password='aIqlCWkHKKkO')
-
-#print(json.dumps(text_to_speech.list_voices(), indent=2))
-
-            with open(join(dirname(__file__), 'output.wav'),'wb') as audio_file:
-            audio_file.write(
-            text_to_speech.synthesize(response, accept='audio/wav',voice="en-US_AllisonVoice").content)
-	
             # printing after processing
             print "--------------------------------"
             print "new_sentence :",new_sentence
